@@ -1,0 +1,297 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>E-Portfolio sample</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("https://i.pinimg.com/1200x/dc/2b/a6/dc2ba6fac9f089925b2104d36c24f97d.jpg") no-repeat center center fixed;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            color: #000000;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        header {
+            padding: 5px;
+            text-align: center;
+            background-color: rgba(100, 80, 150, 0.5);
+            border-bottom: 3px solid rgba(150, 120, 200, 0.8);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: rgb(255, 255, 255);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: rgb(0, 0, 0);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 2rem;
+        }
+
+        .content-box {
+            background-color: rgba(226, 129, 248, 0.178);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+            box-shadow: 0 5px 6px rgba(150, 120, 200, 0.4);
+        }
+        .content-box:hover {
+            box-shadow: 0 8px 12px rgba(150, 120, 200, 0.6);
+            transform: scale(1.1);
+            transition: all 0.3s ease;
+        }
+
+        .content-box h2 {
+            margin-top: 0;
+        }
+
+        .content-box p {
+            line-height: 1.6;
+        }
+        .contentbox h2 {
+            margin-top: 0;
+            text-align: center;
+        }
+
+        .certificate-list {
+            display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the container */
+        }
+        .certificate-container{
+            width: calc(33.33% - 20px); /*  Approximately 1/3 of the container width, minus the gap */
+            text-align: center;
+        }
+        .certificate-container img {
+            width: 220px; /* Adjust as needed */
+            height: 160px;
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the container */
+        }
+        .contact-item {
+            width: calc(33.33% - 20px); /*  Approximately 1/3 of the container width, minus the gap */
+            text-align: center;
+        }
+        .contact-item img {
+            width: 50px; /* Adjust as needed */
+            height: 50px;
+            border-radius: 20%; /* Make the icons circular */
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        }
+        .contact-item a {
+            color: black;
+            text-decoration: none;
+            display: block; /* Make the link take up the full width of the item */
+        }
+        .contact-item p {
+            color: black;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .certificate-nc2 {
+           display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the container */
+        }
+        .certificate-nc2 {
+            width: calc(33.33% - 20px); /*  Approximately 1/3 of the container width, minus the gap */
+            text-align: center;
+        }
+        .certificate-nc2 img {
+            width: 200px; /* Adjust as needed */
+            height: 280px;
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        } 
+        
+
+        footer {
+            text-align: center;
+            background-color: rgba(100, 80, 150, 0);
+            border-top: 3px solid rgba(151, 120, 200, 0);
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My E-Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About Me</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="about" class="content-box">
+            <h2>About Me 𐙚</h2>
+            <p>Hello! I'm Rose Jean Amoy, a passionate learner and aspiring developer. I am currently a 2nd year student at Colegio de Montalban, 
+                where I am honing my skills and knowledge in the field of Information Technology (IT).
+                This e-portfolio showcases my projects, skills, and experiences.
+            </p>
+            <img src="rose.png" alt="Rose Jean Amoy" style="width: 150px; height: auto; border-radius: 50%;"> 
+        </section>
+
+        <section id="certificates" class="contentbox">
+            <h2>My Certificates 𐙚</h2>
+            <p>Here are some of the certificates I have earned:</p>
+            <div class="certificate-list">
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="html.png" alt="HTML Certificate">
+                        <h3>HTML Certificate</h3>
+                    </div>
+                </div>
+            
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="css.png" alt="CSS Basics Certificate">
+                        <h3>CSS Certificate</h3>
+                    </div>
+                </div>
+            
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="javascript.png" alt="JavaScript Fundamentals Certificate">
+                        <h3>JavaScript Certificate</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-nc2">
+                    <div class="certificate-front">
+                        <img src="nc2.png" alt="NC2 Certificate">
+                        <h3>CSS NCII Certificate</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="asean.png" alt="ASEAN Certificate">
+                        <h3>ASEAN Certificate</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="hourcode.png" alt="HOUR OF CODE">
+                        <h3>Hour of Code</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="projects" class="content-box">
+            <h2>My Projects 𐙚</h2>
+            <p>Coming soon...</p>
+        </section>
+
+        <section id="skills" class="content-box">
+            <h2>Skills 𐙚</h2>
+            <p>Coming soon...</p>
+        </section>
+
+        <section id="contact" class="contentbox">
+            <h2>Contact</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <a href="rosejeanamoy@gmail.com">
+                        <img src="https://i.pinimg.com/736x/ef/9e/e8/ef9ee875fefacd614d0e418e1367d658.jpg" alt="Email Icon">
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="https://www.facebook.com/rose.jean.amoy.2025/">
+                        <img src="https://i.pinimg.com/1200x/ee/af/ba/eeafbad4fde018f7a8f88aca1c7f3206.jpg" alt="Facebook">
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="www.linkedin.com/in/rose-jean-amoy-585440301">
+                        <img src="https://i.pinimg.com/736x/5f/a5/1d/5fa51d932fab661a3b3176873926a7bb.jpg" alt="Linkedin">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 by Rose Jean Amoy. All rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+    // code to handle any future interactivity can be added here
+</script>
+
+</html>

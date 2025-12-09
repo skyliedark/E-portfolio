@@ -1,0 +1,501 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My E-Portfolio draft</title>
+    <style>
+        /* CSS Styles */
+        body {
+            margin: 0;
+            padding: 0;
+            background: url("https://i.pinimg.com/1200x/61/f9/61/61f96113e0830270d7002ef51e5438d0.jpg") no-repeat center center fixed;
+            font-family: Arial, sans-serif;
+            background-size: cover;
+            color: #ffffff;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            backdrop-filter: blur(5px);
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2.5rem;
+            color: white;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.7);
+        }
+
+        header {
+            padding: 5px;
+            text-align: center;
+            background-color: rgba(86, 32, 144, 0.5);
+            border-bottom: 3px solid rgba(151, 120, 200, 0);
+        }
+
+        nav ul {
+            list-style: none;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-top: 0.5rem;
+            flex-wrap: wrap;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+            font-weight: bold;
+            position: relative;
+            transition: color 0.3s;
+        }
+
+        nav ul li a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            display: block;
+            margin-top: 5px;
+            right: 0;
+            background: rgb(185, 88, 255);
+            transition: width 0.3s ease;
+        }
+
+        nav ul li a:hover::after {
+            width: 100%;
+            left: 0;
+            background: rgb(255, 255, 255);
+        }
+
+        main {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 40px 20px;
+            gap: 2rem;
+        }
+
+        .content-box {
+            background-color: rgba(86, 32, 144, 0.342);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 800px;
+            text-align: center;
+        }
+        .content-box:hover {
+            box-shadow: 0 8px 12px rgba(150, 120, 200, 0.6);
+        }
+
+        .content-box h2 {
+            margin-top: 0;
+            text-shadow: 2px 2px 4px rgb(0, 0, 1);
+        }
+
+        .content-box p {
+            line-height: 1.6;
+        }
+        .contentbox h2 {
+            margin-top: 0;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgb(0, 0, 1);
+        }
+        .content-box h4 {
+            margin-top: 0;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgb(0, 0, 1);
+        }
+
+        /* Education Section */
+		.education-container {
+			background-color: rgba(255, 255, 255, 0);
+			padding: 20px;
+			border-radius: 10px;
+			max-width: 80%;
+			margin: 0 auto;
+		}
+		.education-header {
+			display: flex;
+			font-size: 1.2em;
+			font-weight: bold;
+			padding: 10px;
+			border-bottom: 2px solid white;
+			margin-bottom: 10px;
+		}
+		.education-header > div:first-child {
+			flex: 2;
+            text-align: left;
+            text-shadow: 2px 2px 4px rgb(0, 0, 1);
+		}
+		.education-header > div:last-child {
+			flex: 1;
+            text-shadow: 2px 2px 4px rgb(0, 0, 1);
+		}
+		.education-item {
+			display: flex;
+			padding: 10px;
+			border-bottom: none;
+		}
+		.education-item:last-child {
+			border-bottom: none;
+		}
+		.education-name {
+			flex: 3;
+			text-decoration: none;
+            text-align: left;
+		}
+        .education-name:hover {
+            transform: scale(1.1);
+            transition: all 0.1s ease;
+        }
+		.education-year {
+			flex: 1;
+			text-align: center;
+		}
+        .education-year:hover {
+            transform: scale(1.1);
+            transition: all 0.1s ease;
+        }
+
+        .certificate-list {
+            display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the container */
+        }
+        .certificate-container{
+            text-align: center;
+        }
+        .certificate-container:hover {
+            transform: scale(1.4);
+            transition: all 0.6s;
+        }
+        .certificate-container img {
+            width: 220px; /* Adjust as needed */
+            height: 160px;
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        }
+
+        .contact-container {
+            display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px; /* Limit the width of the container */
+            margin: 0 auto; /* Center the container */
+        }
+        .contact-item {
+            width: 50px; /*  Approximately 1/3 of the container width, minus the gap */
+            text-align: center;
+        }
+        .contact-item:hover {
+            transform: scale(1.2);
+            transition: all 0.3s;
+        }
+        .contact-item img {
+            width: 40px; /* Adjust as needed */
+            height: 40px;
+            border-radius: 20%; /* Make the icons circular */
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        }
+        .contact-item a {
+            color: black;
+            text-decoration: none;
+            display: block; /* Make the link take up the full width of the item */
+        }
+        .contact-item p {
+            color: black;
+            font-size: 14px;
+            margin-top: 5px;
+        }
+        .certificate-nc2 {
+           display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px;
+        }
+        .certificate-nc2 {
+           text-align: center;
+        }
+        .certificate-nc2:hover {
+            transform: scale(1.4);
+            transition: all 0.6s ease;
+        }
+        .certificate-nc2 img {
+            width: 200px; /* Adjust as needed */
+            height: 280px;
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        } 
+
+        .project-container {
+            display: flex;
+            flex-wrap: wrap;  /* Allow items to wrap to the next line */
+            justify-content: space-around; /* Distribute items evenly */
+            gap: 20px; /* Add spacing between items */
+            max-width: 800px;
+            border-color: black;
+        }
+        .project-container img {
+            width: 190px; /* Adjust as needed */
+            height: 160px;
+            border-radius: 3px;
+            margin-bottom: 5px;
+            display: block; /* Ensure margin-bottom applies */
+        }
+        .project-container h3 {
+            color: rgb(255, 255, 255);
+            text-align: center;
+        }
+        .project-container a {
+            text-decoration: none;
+        }
+        .project-item {
+            border: 2px solid #7b0ba0b9;
+            background: rgba(86, 32, 144, 0.342);
+            border-radius: 10px;
+        }
+        .project-item:hover {
+            transform: scale(1.1);
+            transition: all 0.4s ease;
+        }
+        
+
+        footer {
+            text-align: center;
+            background-color: rgba(100, 80, 150, 0);
+            border-top: 3px solid rgba(151, 120, 200, 0);
+        }
+        
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Welcome to My E-Portfolio</h1>
+        <nav>
+            <ul>
+                <li><a href="#about">About</a></li>
+                <li><a href="#certificates">Certificates</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#skills">Skills</a></li>
+                <li><a href="#reflection">Reflection</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section id="about" class="content-box">
+            <h2>About Me </h2>
+            <p>Hello! <b>I'm Rose Jean Amoy</b>, a passionate learner and aspiring developer. I am currently a 2nd year student at <b>Colegio de Montalban</b>, 
+                where I am honing my skills and knowledge in the field of <b>Information Technology (IT)</b>.
+                This e-portfolio showcases my projects, skills, and experiences.
+            </p>
+            <img src="rose.png" alt="Rose Jean Amoy" style="width: 150px; height: auto; border-radius: 50%;"> 
+            <span></span>
+            <h4>Education</h4>
+            <div class="education-container">
+			    <div class="education-header">
+			    	<div>Educational Attainment</div>
+			    	<div>Year</div>
+			    </div>
+			    <div class="education-item">
+			    	<div class="education-name">Colegio de Montalban</div>
+			    	<div class="education-year">2024-Present</div>
+			    </div>
+			    <div class="education-item">
+			    	<div class="education-name">Kasiglahan Village Senior High School - ICT Strand</div>
+			    	<div class="education-year">2022-2024</div>
+			    </div>
+			    <div class="education-item">
+			    	<div class="education-name">Kasiglahan Village National High School</div>
+			    	<div class="education-year">2018-2022</div>
+			    </div>
+			    <div class="education-item">
+			    	<div class="education-name">Kasiglahan Village Elementary School</div>
+			    	<div class="education-year">2016-2018</div>
+			    </div>
+			    <div class="education-item">
+			    	<div class="education-name">Commonwealth Elementary School</div>
+			    	<div class="education-year">2012-2016</div>
+			    </div>
+		    </div>
+        </section>
+
+        <section id="certificates" class="contentbox">
+            <h2>My Certificates </h2>
+            <div class="certificate-list">
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="html.png" alt="HTML Certificate">
+                        <h3>HTML</h3>
+                    </div>
+                </div>
+            
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="css.png" alt="CSS Basics Certificate">
+                        <h3>CSS</h3>
+                    </div>
+                </div>
+            
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="javascript.png" alt="JavaScript Fundamentals Certificate">
+                        <h3>JavaScript</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="asean.png" alt="ASEAN Certificate">
+                        <h3>ASEAN Certificate</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-nc2">
+                    <div class="certificate-front">
+                        <img src="nc2.png" alt="NC2 Certificate">
+                        <h3>CSS NCII</h3>
+                    </div>
+                </div>
+
+                <div class="certificate-container">
+                    <div class="certificate-front">
+                        <img src="hourcode.png" alt="HOUR OF CODE">
+                        <h3>Hour of Code</h3>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills" class="content-box">
+            <h2>Skills </h2>
+            <p>Coming soon...</p>
+        </section>
+
+        <section id="projects" class="contentbox">
+            <h2>Projects Created</h2>
+            <div class="project-container">
+                <div class="project-item">
+                    <a href="https://phpcalcu.infinityfreeapp.com/?i=1">
+                        <img src="calcu.png" alt="Calculator">
+                        <h3>Mini Calculator</h3>
+                    </a>
+                </div>
+
+                <div class="project-item">
+                    <a href="https://phpcalcu.infinityfreeapp.com/?i=1">
+                        <img src="calcu2.png" alt="Project 1">
+                        <h3>Mini Calculator</h3>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <section id="reflection" class="content-box">
+            <h2>Reflection</h2>
+            <div class="reflection-container">
+                <p>Throughout my journey as a 2nd-year student at Colegio de Montalban, I have grown significantly in my understanding of Information Technology. 
+                    Being part of the IT field has opened my eyes to the endless possibilities of innovation and problem-solving through technology. I have learned the importance of perseverance, adaptability, and continuous learning, especially as I work towards mastering skills like HTML, CSS, and JavaScript.</p>
+            
+                <h2>Future Insights</h2>
+                <p>Looking ahead, I aim to deepen my technical expertise and contribute meaningfully to the tech community. 
+                    I am excited about the opportunities that lie ahead and am committed to growing both personally and professionally in this dynamic field.</p>
+            </div>
+        </section>
+
+        <section id="contact" class="contentbox">
+            <h2>FOR MORE INFO...</h2>
+            <div class="contact-container">
+                <div class="contact-item">
+                    <a href="https://rosejeanamoy@gmail.com">
+                        <img src="https://i.pinimg.com/1200x/c7/12/4e/c7124e8ec906e229f7b30088f573383f.jpg" alt="Email Icon">
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="https://www.facebook.com/rose.jean.amoy.2025/">
+                        <img src="https://i.pinimg.com/736x/6b/f6/7e/6bf67e9e5eee9b3df710024180e87f8e.jpg" alt="Facebook">
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="https://www.linkedin.com/in/rose-jean-amoy-585440301">
+                        <img src="https://i.pinimg.com/1200x/f9/66/2f/f9662f1ae3d9501c704fd39c8abc9b67.jpg" alt="Linkedin">
+                    </a>
+                </div>
+
+                <div class="contact-item">
+                    <a href="#09665236992">
+                        <img src="https://i.pinimg.com/1200x/6e/77/48/6e7748021295f78245645cc332973e1f.jpg" alt="Contact No">
+                    </a>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <div style="text-align:center; margin:30px 0 10px 0;">
+		<a href="#top" style="font-size:16px; text-decoration:none; color:rgb(255, 255, 255); font-weight:bold;"><u>Back to Top</u></a>
+	</div>
+    
+    <footer>
+        <p>&copy; 2025 by Rose Jean Amoy. All rights reserved.</p>
+    </footer>
+</body>
+
+<script>
+    // code to handle any future interactivity can be added here
+    // Animated typing effect for the About Me section
+    const textParts = [
+      { text: "Hello! ", bold: false },
+      { text: "I'm Rose Jean Amoy", bold: true },
+      { text: ", a passionate learner and aspiring developer. I am currently a 2nd year student at ", bold: false },
+      { text: "Colegio de Montalban", bold: true },
+      { text: ", where I am honing my skills and knowledge in the field of ", bold: false },
+      { text: "Information Technology (IT)", bold: true },
+      { text: ". This e-portfolio showcases my projects, skills, and experiences.", bold: false }
+    ];
+
+    const paragraph = document.querySelector('#about p');
+    paragraph.innerHTML = '';
+    let partIndex = 0;
+    let charIndex = 0;
+
+    function typeWriter() {
+      if (partIndex < textParts.length) {
+        const currentPart = textParts[partIndex];
+
+        if (charIndex < currentPart.text.length) {
+          const char = currentPart.text.charAt(charIndex);
+        
+          if (charIndex === 0) {
+            const span = document.createElement(currentPart.bold ? 'b' : 'span');
+            span.textContent = char;
+            paragraph.appendChild(span);
+          } else {
+            paragraph.lastChild.textContent += char;
+          }
+
+          charIndex++;
+          setTimeout(typeWriter, 30);
+        } else {
+          partIndex++;
+          charIndex = 0;
+          setTimeout(typeWriter, 30 );
+        }
+      }
+    }
+
+    typeWriter();
+</script>
+
+</html>
