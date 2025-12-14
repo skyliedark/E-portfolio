@@ -146,19 +146,10 @@
 			text-decoration: none;
             text-align: left;
 		}
-        .education-name:hover {
-            transform: scale(1.1);
-            transition: all 0.1s ease;
-        }
 		.education-year {
 			flex: 1;
 			text-align: center;
 		}
-        .education-year:hover {
-            transform: scale(1.1);
-            transition: all 0.1s ease;
-        }
-
         .certificate-list {
             display: flex;
             flex-wrap: wrap;  
@@ -224,16 +215,23 @@
         .certificate-nc2 {
            text-align: center;
         }
-        .certificate-nc2:hover {
-            transform: scale(1.4);
-            transition: all 0.6s ease;
-        }
         .certificate-nc2 img {
             width: 200px; 
             height: 280px;
             margin-bottom: 5px;
             display: block;
         } 
+        .certificate-list a {
+            text-decoration: none;
+            color: inherit;
+        }
+
+        .certificate-container:hover,
+        .certificate-nc2:hover {
+            transform: scale(1.07);
+            cursor: pointer;
+            transition: transform 0.3s ease;
+        }
 
 		.skills-category {
             margin-bottom: 40px;
@@ -417,51 +415,63 @@
         </section>
 
         <section id="certificates" class="contentbox">
-            <h2>My Certificates </h2>
-            <div class="certificate-list">
-                <div class="certificate-container">
-                    <div class="certificate-front">
-                        <img src="html.png" alt="HTML Certificate">
-                        <h3>HTML</h3>
-                    </div>
-                </div>
-            
-                <div class="certificate-container">
-                    <div class="certificate-front">
-                        <img src="css.png" alt="CSS Basics Certificate">
-                        <h3>CSS</h3>
-                    </div>
-                </div>
-            
-                <div class="certificate-container">
-                    <div class="certificate-front">
-                        <img src="javascript.png" alt="JavaScript Fundamentals Certificate">
-                        <h3>JavaScript</h3>
-                    </div>
-                </div>
-
-                <div class="certificate-container">
-                    <div class="certificate-front">
-                        <img src="asean.png" alt="ASEAN Certificate">
-                        <h3>ASEAN Certificate</h3>
-                    </div>
-                </div>
-
-                <div class="certificate-nc2">
-                    <div class="certificate-front">
-                        <img src="nc2.png" alt="NC2 Certificate">
-                        <h3>CSS NCII</h3>
-                    </div>
-                </div>
-
-                <div class="certificate-container">
-                    <div class="certificate-front">
-                        <img src="hourcode.png" alt="HOUR OF CODE">
-                        <h3>Hour of Code</h3>
-                    </div>
+    <h2>My Certificates</h2>
+    <div class="certificate-list">
+        <a href="html.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-container">
+                <div class="certificate-front">
+                    <img src="html.png" alt="HTML Certificate">
+                    <h3>HTML</h3>
                 </div>
             </div>
-        </section>
+        </a>
+        
+        <a href="css.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-container">
+                <div class="certificate-front">
+                    <img src="css.png" alt="CSS Basics Certificate">
+                    <h3>CSS</h3>
+                </div>
+            </div>
+        </a>
+        
+        <a href="javascript.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-container">
+                <div class="certificate-front">
+                    <img src="javascript.png" alt="JavaScript Fundamentals Certificate">
+                    <h3>JavaScript</h3>
+                </div>
+            </div>
+        </a>
+
+        <a href="asean.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-container">
+                <div class="certificate-front">
+                    <img src="asean.png" alt="ASEAN Certificate">
+                    <h3>ASEAN Certificate</h3>
+                </div>
+            </div>
+        </a>
+
+        <a href="nc2.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-nc2">
+                <div class="certificate-front">
+                    <img src="nc2.png" alt="NC2 Certificate">
+                    <h3>CSS NCII</h3>
+                </div>
+            </div>
+        </a>
+
+        <a href="hourcode.png" target="_blank" rel="noopener noreferrer">
+            <div class="certificate-container">
+                <div class="certificate-front">
+                    <img src="hourcode.png" alt="HOUR OF CODE">
+                    <h3>Hour of Code</h3>
+                </div>
+            </div>
+        </a>
+    </div>
+</section>
 
         <section id="skills" class="content-box">
             <h2>Skills</h2>
@@ -533,7 +543,6 @@
                 <div class="soft-skills-container">
                     <div class="soft-skill-badge">English Language</div>
                     <div class="soft-skill-badge">Tagalog Language</div>
-                    <div class="soft-skill-badge">Bisaya Language</div>
             </div>
         </section>
 
