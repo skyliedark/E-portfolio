@@ -235,6 +235,93 @@
             display: block;
         } 
 
+		.skills-category {
+            margin-bottom: 40px;
+        }
+
+        .skills-category h3 {
+            color: #ffffff;
+            font-size: 24px;
+            margin-bottom: 20px;
+            border-left: 4px solid #4CAF50;
+            padding-left: 15px;
+        }
+
+        .skills-container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .skill-item {
+            width: 100%;
+        }
+
+        .skill-name {
+            display: block;
+            font-weight: 600;
+            color: #ffffff;
+            margin-bottom: 8px;
+            font-size: 16px;
+        }
+
+        .skill-bar {
+            width: 100%;
+            height: 25px;
+            background-color: #e0e0e0;
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.1);
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, #4CAF50, #45a049);
+            border-radius: 12px;
+            transition: width 1s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+            padding-right: 10px;
+            color: white;
+            font-size: 12px;
+            font-weight: bold;
+        }
+
+        .soft-skills-container {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 15px;
+        }
+
+        .soft-skill-badge {
+            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            color: white;
+            padding: 12px 24px;
+            border-radius: 25px;
+            font-size: 14px;
+            font-weight: 500;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            cursor: default;
+        }
+
+        .soft-skill-badge:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 6px 12px rgba(0,0,0,0.15);
+        }
+
+        @media (max-width: 768px) {
+            .skills-category h3 {
+                font-size: 20px;
+            }
+
+            .soft-skill-badge {
+                font-size: 13px;
+                padding: 10px 20px;
+            }
+        }
+
         .project-container {
             display: flex;
             flex-wrap: wrap;  
@@ -376,8 +463,77 @@
         </section>
 
         <section id="skills" class="content-box">
-            <h2>Skills </h2>
-            <p>Coming soon...</p>
+            <h2>Skills</h2>
+
+            <div class="skills-category">
+                <h3>Technical Skills</h3>
+                <div class="skills-container">
+                    <div class="skill-item">
+                        <span class="skill-name">HTML</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">CSS</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 85%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">JavaScript</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 70%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Web Development</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 80%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">C++</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 60%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Set-up Computer Server</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                    <div class="skill-item">
+                        <span class="skill-name">Set-up Computer Network</span>
+                        <div class="skill-bar">
+                            <div class="skill-progress" style="width: 90%"></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        
+            <div class="skills-category">
+                <h3>Soft Skills</h3>
+                <div class="soft-skills-container">
+                    <div class="soft-skill-badge">Problem Solving</div>
+                    <div class="soft-skill-badge">Adaptability</div>
+                    <div class="soft-skill-badge">Continuous Learning</div>
+                    <div class="soft-skill-badge">Teamwork</div>
+                    <div class="soft-skill-badge">Communication</div>
+                    <div class="soft-skill-badge">Time Management</div>
+                    <div class="soft-skill-badge">Flexibility</div>
+                    <div class="soft-skill-badge">Active Listening</div>
+                </div>
+            </div>
+
+            <div class="skills-category">
+                <h3>Languages</h3>
+                <div class="soft-skills-container">
+                    <div class="soft-skill-badge">English Language</div>
+                    <div class="soft-skill-badge">Tagalog Language</div>
+                    <div class="soft-skill-badge">Bisaya Language</div>
+            </div>
         </section>
 
         <section id="projects" class="contentbox">
