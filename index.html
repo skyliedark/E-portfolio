@@ -10,6 +10,9 @@
     <meta property="og:image" content="rose.png">
     <meta property="og:type" content="website">
 
+    <meta property="og:url" content="https://skyliedark.github.io/">
+    <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='8' fill='%230d0b14'/><text x='50%25' y='54%25' dominant-baseline='middle' text-anchor='middle' font-family='Outfit,sans-serif' font-size='13' font-weight='700' fill='%23B07EF0'>RJ</text></svg>">
+
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@200;300;400;500;600;700&family=Space+Grotesk:wght@300;400;500;600&display=swap" rel="stylesheet">
 
     <style>
@@ -31,6 +34,93 @@
             --accent:   #B07EF0;
             --accent2:  #F7C3DB;
             --glow:     rgba(176, 126, 240, 0.35);
+        }
+
+        /* ── Light Mode Overrides ── */
+        body.light {
+            --bg:       #f3eeff;
+            --surface:  rgba(255, 255, 255, 0.78);
+            --border:   rgba(176, 126, 240, 0.28);
+            --text:     #1e0a2e;
+            --text-dim: rgba(30, 10, 46, 0.55);
+            --h1: #7c3aad;
+            --h2: #7c3aad;
+            --h4: #c0478a;
+            --h5: #9b2dbf;
+            --h7: #1e0a2e;
+            --h8: #9b2dbf;
+        }
+
+        body.light {
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(ellipse 80% 60% at 10% 20%, rgba(188, 104, 219, 0.10) 0%, transparent 60%),
+                radial-gradient(ellipse 60% 50% at 90% 80%, rgba(207, 118, 224, 0.08) 0%, transparent 55%),
+                radial-gradient(ellipse 40% 40% at 50% 50%, rgba(176, 126, 240, 0.05) 0%, transparent 70%);
+        }
+
+        body.light header {
+            background: rgba(240, 232, 255, 0.92);
+            border-bottom: 1px solid rgba(176, 126, 240, 0.22);
+            box-shadow: 0 2px 24px rgba(176, 126, 240, 0.1);
+        }
+
+        body.light .content-box,
+        body.light .contentbox {
+            background: rgba(255, 255, 255, 0.82);
+            border-color: rgba(176, 126, 240, 0.22);
+            box-shadow: 0 4px 24px rgba(176, 126, 240, 0.08);
+        }
+
+        body.light .content-box:hover,
+        body.light .contentbox:hover {
+            box-shadow: 0 8px 36px rgba(176, 126, 240, 0.2);
+        }
+
+        body.light .about-photo {
+            background: linear-gradient(#f3eeff, #f3eeff) padding-box,
+                        linear-gradient(135deg, var(--h2), var(--h8)) border-box;
+        }
+
+        body.light .education-name { color: #2a0a3e; }
+        body.light p { color: rgba(30, 10, 46, 0.78); }
+
+        body.light .skill-bar { background: rgba(176, 126, 240, 0.14); }
+
+        body.light .soft-skill-badge {
+            background: rgba(176, 126, 240, 0.1);
+            border-color: rgba(176, 126, 240, 0.3);
+            color: #2a0a3e;
+        }
+
+        body.light .soft-skill-badge:hover {
+            background: rgba(176, 126, 240, 0.2);
+        }
+
+        body.light .project-item {
+            background: rgba(245, 238, 255, 0.9);
+            border-color: rgba(176, 126, 240, 0.25);
+        }
+
+        body.light .project-item h3 { -webkit-text-fill-color: #2a0a3e; color: #2a0a3e; }
+        body.light .project-desc { color: rgba(124, 58, 173, 0.75); }
+
+        body.light .skills-category h3 { -webkit-text-fill-color: #2a0a3e; color: #2a0a3e; }
+        body.light .skill-name { color: #2a0a3e; }
+
+        body.light footer {
+            color: rgba(124, 58, 173, 0.55);
+            border-top-color: rgba(176, 126, 240, 0.18);
+        }
+
+        body.light .back-to-top a { color: #7c3aad; border-bottom-color: rgba(124, 58, 173, 0.35); }
+
+        body.light::before { opacity: 0.2; }
+
+        /* smooth transition for all themed elements */
+        body, header, .content-box, .contentbox, .project-item, .soft-skill-badge, footer {
+            transition: background-color 0.4s ease, background 0.4s ease,
+                        color 0.4s ease, border-color 0.4s ease, box-shadow 0.4s ease;
         }
 
         html { scroll-behavior: smooth; }
@@ -70,6 +160,72 @@
             -webkit-backdrop-filter: blur(18px);
             border-bottom: 1px solid rgba(176, 126, 240, 0.2);
             box-shadow: 0 2px 24px rgba(176, 126, 240, 0.08);
+        }
+
+        /* ── THEME TOGGLE SWITCH ── */
+        .theme-switch-wrap {
+            position: absolute;
+            top: 50%; right: 20px;
+            transform: translateY(-50%);
+            display: flex; align-items: center; gap: 8px;
+            z-index: 10;
+        }
+
+        .theme-switch-wrap .switch-icon {
+            font-size: 0.88rem;
+            line-height: 1;
+            user-select: none;
+            transition: opacity 0.3s;
+        }
+
+        #theme-toggle {
+            position: absolute;
+            opacity: 0; width: 0; height: 0;
+            pointer-events: none;
+        }
+
+        .switch-track {
+            position: relative;
+            width: 52px; height: 28px;
+            background: rgba(255,255,255,0.08);
+            border: 1.5px solid rgba(176, 126, 240, 0.45);
+            border-radius: 100px;
+            cursor: pointer;
+            transition: background 0.35s ease, border-color 0.35s ease;
+            flex-shrink: 0;
+        }
+
+        .switch-track::after {
+            content: '';
+            position: absolute;
+            top: 3px; left: 4px;
+            width: 18px; height: 18px;
+            border-radius: 50%;
+            background: rgba(176, 126, 240, 0.75);
+            box-shadow: 0 0 8px rgba(176, 126, 240, 0.55);
+            transition: transform 0.35s cubic-bezier(.4,0,.2,1),
+                        background 0.35s ease, box-shadow 0.35s ease;
+        }
+
+        #theme-toggle:checked + .switch-track {
+            background: rgba(176, 126, 240, 0.22);
+            border-color: rgba(124, 58, 173, 0.5);
+        }
+
+        #theme-toggle:checked + .switch-track::after {
+            transform: translateX(23px);
+            background: #7c3aad;
+            box-shadow: 0 0 10px rgba(124, 58, 173, 0.5);
+        }
+
+        .switch-track:hover { border-color: rgba(176, 126, 240, 0.8); }
+
+        @media (max-width: 600px) {
+            .theme-switch-wrap { right: 12px; gap: 5px; }
+            .theme-switch-wrap .switch-icon { font-size: 0.78rem; }
+            .switch-track { width: 44px; height: 24px; }
+            .switch-track::after { width: 16px; height: 16px; }
+            #theme-toggle:checked + .switch-track::after { transform: translateX(19px); }
         }
 
         h1 {
@@ -460,6 +616,65 @@
             position: relative; z-index: 1;
         }
 
+        /* ── SCROLL PROGRESS BAR ── */
+        #scroll-progress {
+            position: fixed;
+            top: 0; left: 0;
+            width: 0%;
+            height: 3px;
+            z-index: 9999;
+            background: linear-gradient(90deg, var(--h5), var(--h2), var(--h4), var(--h8));
+            background-size: 200% 100%;
+            animation: shimmer-bar 3s linear infinite;
+            box-shadow:
+                0 0 6px rgba(176, 126, 240, 0.8),
+                0 0 14px rgba(207, 118, 224, 0.5),
+                0 0 28px rgba(247, 195, 219, 0.3);
+            border-radius: 0 2px 2px 0;
+            transition: width 0.1s linear;
+            pointer-events: none;
+        }
+
+        /* trailing glow tip */
+        #scroll-progress::after {
+            content: '';
+            position: absolute;
+            right: 0; top: 50%;
+            transform: translateY(-50%);
+            width: 10px; height: 10px;
+            border-radius: 50%;
+            background: var(--h4);
+            box-shadow:
+                0 0 6px 2px rgba(247, 195, 219, 0.9),
+                0 0 14px 4px rgba(176, 126, 240, 0.6);
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+
+        #scroll-progress.active::after { opacity: 1; }
+
+        @keyframes shimmer-bar {
+            0%   { background-position: 200% center; }
+            100% { background-position: -200% center; }
+        }
+
+        /* Light mode: slightly toned down glow */
+        body.light #scroll-progress {
+            box-shadow:
+                0 0 5px rgba(124, 58, 173, 0.7),
+                0 0 12px rgba(155, 45, 191, 0.4),
+                0 0 22px rgba(192, 71, 138, 0.25);
+        }
+
+        /* ── PARTICLE CANVAS ── */
+        #particle-canvas {
+            position: fixed;
+            inset: 0;
+            width: 100%; height: 100%;
+            pointer-events: none;
+            z-index: 0;
+        }
+
         /* ── FADE-IN ON SCROLL ── */
         .fade-in {
             opacity: 0;
@@ -468,6 +683,178 @@
         }
 
         .fade-in.visible { opacity: 1; transform: translateY(0); }
+
+        /* ── TYPEWRITER CURSOR ── */
+        #about-typewriter::after {
+            content: '|';
+            display: inline-block;
+            color: var(--h2);
+            font-weight: 300;
+            margin-left: 1px;
+            animation: blink 1s step-start infinite;
+        }
+        #about-typewriter.done::after { display: none; }
+        @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+        /* ── HERO BADGE ── */
+        .hero-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 7px;
+            background: rgba(176, 126, 240, 0.1);
+            border: 1px solid rgba(176, 126, 240, 0.35);
+            border-radius: 100px;
+            padding: 6px 16px;
+            font-size: 0.72rem;
+            font-weight: 500;
+            letter-spacing: 0.1em;
+            color: var(--h6);
+            margin-bottom: 20px;
+            animation: badge-pulse 2.5s ease-in-out infinite;
+        }
+        .hero-badge .badge-dot {
+            width: 7px; height: 7px;
+            border-radius: 50%;
+            background: #6ee7b7;
+            box-shadow: 0 0 6px #6ee7b7, 0 0 12px rgba(110,231,183,0.5);
+            animation: dot-ping 2.5s ease-in-out infinite;
+            flex-shrink: 0;
+        }
+        @keyframes badge-pulse {
+            0%, 100% { box-shadow: 0 0 0 0 rgba(176,126,240,0); }
+            50%       { box-shadow: 0 0 0 6px rgba(176,126,240,0.08); }
+        }
+        @keyframes dot-ping {
+            0%, 100% { transform: scale(1); opacity: 1; }
+            50%       { transform: scale(1.3); opacity: 0.7; }
+        }
+
+        /* ── DOWNLOAD CV BUTTON ── */
+        .cv-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            margin-top: 18px;
+            padding: 10px 26px;
+            border: 1px solid rgba(176, 126, 240, 0.45);
+            border-radius: 100px;
+            background: rgba(176, 126, 240, 0.08);
+            color: var(--h2);
+            font-family: 'Outfit', sans-serif;
+            font-size: 0.78rem;
+            font-weight: 600;
+            letter-spacing: 0.12em;
+            text-transform: uppercase;
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s, transform 0.2s, box-shadow 0.3s;
+        }
+        .cv-btn:hover {
+            background: rgba(176, 126, 240, 0.2);
+            border-color: rgba(176, 126, 240, 0.7);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(176, 126, 240, 0.25);
+        }
+        .cv-btn svg { width: 14px; height: 14px; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
+        body.light .cv-btn { color: #7c3aad; border-color: rgba(124,58,173,0.4); background: rgba(124,58,173,0.07); }
+        body.light .cv-btn:hover { background: rgba(124,58,173,0.16); }
+
+        /* ── PROJECT LIVE BADGE ── */
+        .project-item { position: relative; }
+        .live-badge {
+            position: absolute;
+            top: 8px; right: 8px;
+            background: rgba(10, 7, 20, 0.75);
+            border: 1px solid rgba(176, 126, 240, 0.4);
+            border-radius: 100px;
+            padding: 3px 10px;
+            font-size: 0.65rem;
+            font-weight: 600;
+            letter-spacing: 0.1em;
+            color: var(--h2);
+            backdrop-filter: blur(6px);
+            opacity: 0;
+            transform: translateY(-4px);
+            transition: opacity 0.25s ease, transform 0.25s ease;
+            pointer-events: none;
+            white-space: nowrap;
+        }
+        .project-item:hover .live-badge { opacity: 1; transform: translateY(0); }
+        body.light .live-badge { background: rgba(255,255,255,0.82); color: #7c3aad; }
+
+        /* ── CERTIFICATE LIGHTBOX ── */
+        #lightbox {
+            display: none;
+            position: fixed;
+            inset: 0;
+            z-index: 10000;
+            background: rgba(10, 7, 20, 0.88);
+            backdrop-filter: blur(10px);
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+        }
+        #lightbox.open { display: flex; }
+        #lightbox img {
+            max-width: 90vw;
+            max-height: 88vh;
+            border-radius: 12px;
+            box-shadow: 0 0 60px rgba(176, 126, 240, 0.35);
+            animation: lb-in 0.28s cubic-bezier(.4,0,.2,1);
+        }
+        @keyframes lb-in {
+            from { opacity: 0; transform: scale(0.92); }
+            to   { opacity: 1; transform: scale(1); }
+        }
+        #lightbox-close {
+            position: absolute;
+            top: 18px; right: 22px;
+            background: rgba(176, 126, 240, 0.15);
+            border: 1px solid rgba(176, 126, 240, 0.4);
+            border-radius: 50%;
+            width: 38px; height: 38px;
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer;
+            color: var(--h7);
+            font-size: 1.1rem;
+            line-height: 1;
+            transition: background 0.2s, transform 0.2s;
+        }
+        #lightbox-close:hover { background: rgba(176, 126, 240, 0.3); transform: scale(1.1); }
+        .certificate-container, .certificate-nc2 { cursor: zoom-in; }
+
+        /* ── FOOTER SOCIAL LINKS ── */
+        .footer-socials {
+            display: flex;
+            justify-content: center;
+            gap: 18px;
+            margin-bottom: 10px;
+        }
+        .footer-socials a {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 34px; height: 34px;
+            border-radius: 50%;
+            border: 1px solid rgba(176, 126, 240, 0.28);
+            background: rgba(176, 126, 240, 0.07);
+            color: var(--h1);
+            font-size: 0.85rem;
+            text-decoration: none;
+            transition: background 0.3s, border-color 0.3s, transform 0.25s, box-shadow 0.3s;
+        }
+        .footer-socials a:hover {
+            background: rgba(176, 126, 240, 0.22);
+            border-color: rgba(176, 126, 240, 0.6);
+            transform: translateY(-3px);
+            box-shadow: 0 6px 16px rgba(176, 126, 240, 0.25);
+        }
+        body.light .footer-socials a { color: #7c3aad; border-color: rgba(124,58,173,0.28); background: rgba(124,58,173,0.06); }
+
+        /* ── REFLECTION h2 FIX ── */
+        .reflection-container h2 {
+            font-size: 1.25rem;
+            margin-top: 1.6rem;
+        }
 
         /* ── RESPONSIVE ── */
         @media (max-width: 600px) {
@@ -482,11 +869,17 @@
 </head>
 <body id="top">
 
-    <!-- ── CURSOR GLOW ── -->
-    <div id="cursor-glow"></div>
+    <div id="scroll-progress" aria-hidden="true"></div>
 
-    <!-- ── STICKY HEADER ── -->
-    <header>
+    <canvas id="particle-canvas" aria-hidden="true"></canvas>
+
+    <header style="position:relative;">
+        <div class="theme-switch-wrap" title="Toggle light / dark mode">
+            <span class="switch-icon"></span>
+            <input type="checkbox" id="theme-toggle" aria-label="Toggle light/dark mode">
+            <label class="switch-track" for="theme-toggle"></label>
+            <span class="switch-icon"></span>
+        </div>
         <h1>Rose Jean Amoy</h1>
         <nav>
             <ul>
@@ -503,6 +896,10 @@
     <!-- ── HERO ── -->
     <section id="hero">
         <p class="hero-tag">E-Portfolio</p>
+        <div class="hero-badge">
+            <span class="badge-dot"></span>
+            Open to Opportunities
+        </div>
         <h2 class="hero-name">Rose Jean Amoy</h2>
         <p class="hero-tagline">IT Student &amp; Aspiring Developer — building clean, functional web experiences one line at a time.</p>
         <a href="#projects" class="hero-cta">View My Work</a>
@@ -514,10 +911,14 @@
         <section id="about" class="content-box fade-in" data-delay="0">
             <h2>About Me</h2>
             <div class="about-intro">
-                <img src="rose.png" alt="Portrait of Rose Jean Amoy" class="about-photo">
+                <img src="rose.png" alt="Portrait of Rose Jean Amoy" class="about-photo" loading="lazy">
                 <div class="about-text">
                     <p class="about-headline">Passionate learner. Aspiring developer. Problem solver.</p>
                     <p id="about-typewriter"></p>
+                    <a href="Rose_Jean_Amoy_Resume.pdf" download class="cv-btn">
+                        <svg viewBox="0 0 24 24"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+                        Download CV
+                    </a>
                 </div>
             </div>
             <h4>Education</h4>
@@ -553,42 +954,30 @@
         <section id="certificates" class="content-box fade-in" data-delay="80">
             <h2>My Certificates</h2>
             <div class="certificate-list">
-                <a href="html.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-container">
-                        <img src="html.png" alt="Certificate of Completion – HTML Fundamentals">
-                        <h3>HTML</h3>
-                    </div>
-                </a>
-                <a href="css.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-container">
-                        <img src="css.png" alt="Certificate of Completion – CSS Basics">
-                        <h3>CSS</h3>
-                    </div>
-                </a>
-                <a href="javascript.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-container">
-                        <img src="javascript.png" alt="Certificate of Completion – JavaScript Fundamentals">
-                        <h3>JavaScript</h3>
-                    </div>
-                </a>
-                <a href="asean.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-container">
-                        <img src="asean.png" alt="ASEAN Participation Certificate">
-                        <h3>ASEAN Certificate</h3>
-                    </div>
-                </a>
-                <a href="nc2.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-nc2">
-                        <img src="nc2.png" alt="TESDA National Certificate II – Computer Systems Servicing">
-                        <h3>CSS NCII</h3>
-                    </div>
-                </a>
-                <a href="hourcode.png" target="_blank" rel="noopener noreferrer">
-                    <div class="certificate-container">
-                        <img src="hourcode.png" alt="Hour of Code Completion Certificate">
-                        <h3>Hour of Code</h3>
-                    </div>
-                </a>
+                <div class="certificate-container" data-img="html.png">
+                    <img src="html.png" alt="Certificate of Completion – HTML Fundamentals" loading="lazy">
+                    <h3>HTML</h3>
+                </div>
+                <div class="certificate-container" data-img="css.png">
+                    <img src="css.png" alt="Certificate of Completion – CSS Basics" loading="lazy">
+                    <h3>CSS</h3>
+                </div>
+                <div class="certificate-container" data-img="javascript.png">
+                    <img src="javascript.png" alt="Certificate of Completion – JavaScript Fundamentals" loading="lazy">
+                    <h3>JavaScript</h3>
+                </div>
+                <div class="certificate-container" data-img="asean.png">
+                    <img src="asean.png" alt="ASEAN Participation Certificate" loading="lazy">
+                    <h3>ASEAN Certificate</h3>
+                </div>
+                <div class="certificate-nc2" data-img="nc2.png">
+                    <img src="nc2.png" alt="TESDA National Certificate II – Computer Systems Servicing" loading="lazy">
+                    <h3>CSS NCII</h3>
+                </div>
+                <div class="certificate-container" data-img="hourcode.png">
+                    <img src="hourcode.png" alt="Hour of Code Completion Certificate" loading="lazy">
+                    <h3>Hour of Code</h3>
+                </div>
             </div>
         </section>
 
@@ -679,8 +1068,9 @@
             <h2>Projects Created</h2>
             <div class="project-container">
                 <div class="project-item">
-                    <a href="https://minicalcu.lovable.app/" target="_blank" rel="noopener noreferrer">
-                        <img src="calcu.png" alt="Screenshot of Mini Calculator project">
+                    <span class="live-badge">↗ Live</span>
+                    <a href="https://phpcalcu.infinityfreeapp.com/?i=1" target="_blank" rel="noopener noreferrer">
+                        <img src="calcu.png" alt="Screenshot of Mini Calculator project" loading="lazy">
                         <div class="project-info">
                             <h3>Mini Calculator</h3>
                             <p class="project-desc">A PHP-based arithmetic calculator for basic operations.</p>
@@ -688,8 +1078,9 @@
                     </a>
                 </div>
                 <div class="project-item">
+                    <span class="live-badge">↗ Live</span>
                     <a href="https://ginlaurente8-ctrl.github.io/minigamw-namin/" target="_blank" rel="noopener noreferrer">
-                        <img src="memoryg.png" alt="Screenshot of Memory Game project">
+                        <img src="memoryg.png" alt="Screenshot of Memory Game project" loading="lazy">
                         <div class="project-info">
                             <h3>Memory Game</h3>
                             <p class="project-desc">A card-flipping browser game to test short-term memory.</p>
@@ -697,8 +1088,9 @@
                     </a>
                 </div>
                 <div class="project-item">
+                    <span class="live-badge">↗ Live</span>
                     <a href="https://ginlaurente8-ctrl.github.io/form-jquery/" target="_blank" rel="noopener noreferrer">
-                        <img src="rgstrtn.png" alt="Screenshot of jQuery Registration Form">
+                        <img src="rgstrtn.png" alt="Screenshot of jQuery Registration Form" loading="lazy">
                         <div class="project-info">
                             <h3>Registration Form</h3>
                             <p class="project-desc">A validated registration form built with jQuery.</p>
@@ -706,8 +1098,9 @@
                     </a>
                 </div>
                 <div class="project-item">
+                    <span class="live-badge">↗ Live</span>
                     <a href="https://ginlaurente8-ctrl.github.io/javascript-form/" target="_blank" rel="noopener noreferrer">
-                        <img src="form.png" alt="Screenshot of JavaScript Registration Form">
+                        <img src="form.png" alt="Screenshot of JavaScript Registration Form" loading="lazy">
                         <div class="project-info">
                             <h3>Registration Form 2</h3>
                             <p class="project-desc">A dynamic form using vanilla JavaScript validation.</p>
@@ -715,8 +1108,9 @@
                     </a>
                 </div>
                 <div class="project-item">
+                    <span class="live-badge">↗ Live</span>
                     <a href="https://retz28create.github.io/quizz_app-/" target="_blank" rel="noopener noreferrer">
-                        <img src="quiz.png" alt="Screenshot of Quiz App project">
+                        <img src="quiz.png" alt="Screenshot of Quiz App project" loading="lazy">
                         <div class="project-info">
                             <h3>Quiz App</h3>
                             <p class="project-desc">An interactive multiple-choice quiz with score tracking.</p>
@@ -724,8 +1118,9 @@
                     </a>
                 </div>
                 <div class="project-item">
+                    <span class="live-badge">↗ Live</span>
                     <a href="https://skyliedark.github.io/Language-Translator-Chat/" target="_blank" rel="noopener noreferrer">
-                        <img src="translator.png" alt="Screenshot of Language Translator Chat project">
+                        <img src="translator.png" alt="Screenshot of Language Translator Chat project" loading="lazy">
                         <div class="project-info">
                             <h3>Language Translator Chat</h3>
                             <p class="project-desc">A real-time chat app that translates messages across languages.</p>
@@ -748,11 +1143,11 @@
         </section>
 
         <!-- ── CONTACT ── -->
-        <!--<section id="contact" class="content-box fade-in" data-delay="80">-->
+        <section id="contact" class="content-box fade-in" data-delay="80">
             <h2>For More Info…</h2>
             <div class="contact-container">
                 <div class="contact-item">
-                    <a href="mailto:rosejeanamoy@gmail.com" aria-label="Send an email to Rose Jean Amoy">
+                    <a href="/cdn-cgi/l/email-protection#8dffe2fee8e7e8ece3ece0e2f4cdeae0ece4e1a3eee2e0" aria-label="Send an email to Rose Jean Amoy">
                         <img src="https://i.pinimg.com/1200x/c7/12/4e/c7124e8ec906e229f7b30088f573383f.jpg" alt="Email icon">
                         <span class="contact-label">Email</span>
                     </a>
@@ -776,19 +1171,31 @@
                     </a>
                 </div>
             </div>
-        <!--</section>-->
+        </section>
 
     </main>
 
+    <!-- ── LIGHTBOX ── -->
+    <div id="lightbox" role="dialog" aria-modal="true" aria-label="Certificate preview">
+        <button id="lightbox-close" aria-label="Close">✕</button>
+        <img id="lightbox-img" src="" alt="Certificate full view">
+    </div>
+
     <div class="back-to-top">
-        <a href="#top">↑ Back to Top</a>
+        <a href="#top">Back to Top</a>
     </div>
 
     <footer>
+        <div class="footer-socials">
+            <a href="mailto:rosejeanamoy@gmail.com" aria-label="Email" title="Email">✉</a>
+            <a href="https://www.facebook.com/rose.jean.amoy.2025/" target="_blank" rel="noopener noreferrer" aria-label="Facebook" title="Facebook">f</a>
+            <a href="https://www.linkedin.com/in/rose-jean-amoy-585440301" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn" title="LinkedIn">in</a>
+            <a href="tel:+639665236992" aria-label="Phone" title="Phone">✆</a>
+        </div>
         <p>&copy; 2025 by Rose Jean Amoy · All rights reserved.</p>
     </footer>
 
-    <script>
+    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
         /* ── TYPEWRITER ── */
         const textParts = [
             { text: "Hello! ", bold: false },
@@ -820,9 +1227,37 @@
                     partIndex++; charIndex = 0;
                     setTimeout(typeWriter, 28);
                 }
+            } else {
+                // typing done — keep cursor blinking for 2s then hide
+                setTimeout(() => paragraph.classList.add('done'), 2000);
             }
         }
         typeWriter();
+
+        /* ── CERTIFICATE LIGHTBOX ── */
+        const lightbox    = document.getElementById('lightbox');
+        const lightboxImg = document.getElementById('lightbox-img');
+        const lbClose     = document.getElementById('lightbox-close');
+
+        document.querySelectorAll('[data-img]').forEach(el => {
+            el.addEventListener('click', () => {
+                const src = el.dataset.img;
+                const alt = el.querySelector('img').alt;
+                lightboxImg.src = src;
+                lightboxImg.alt = alt;
+                lightbox.classList.add('open');
+                document.body.style.overflow = 'hidden';
+            });
+        });
+
+        function closeLightbox() {
+            lightbox.classList.remove('open');
+            document.body.style.overflow = '';
+        }
+
+        lbClose.addEventListener('click', closeLightbox);
+        lightbox.addEventListener('click', e => { if (e.target === lightbox) closeLightbox(); });
+        document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox(); });
 
         /* ── SKILL BARS — animate on scroll ── */
         const skillSection = document.getElementById('skills');
@@ -854,6 +1289,8 @@
         }, { rootMargin: '-40% 0px -55% 0px' });
         sections.forEach(s => navObserver.observe(s));
 
+
+
         /* ── SECTION FADE-IN ON SCROLL ── */
         const fadeObserver = new IntersectionObserver((entries) => {
             entries.forEach(entry => {
@@ -864,8 +1301,116 @@
                 }
             });
         }, { threshold: 0.1 });
-
         document.querySelectorAll('.fade-in').forEach(el => fadeObserver.observe(el));
+
+        /* ── THEME TOGGLE ── */
+        const themeToggle = document.getElementById('theme-toggle');
+
+        // Restore saved preference
+        if (localStorage.getItem('theme') === 'light') {
+            document.body.classList.add('light');
+            themeToggle.checked = true;
+        }
+
+        themeToggle.addEventListener('change', () => {
+            const isLight = themeToggle.checked;
+            document.body.classList.toggle('light', isLight);
+            localStorage.setItem('theme', isLight ? 'light' : 'dark');
+        });
+
+        /* ── SCROLL PROGRESS BAR ── */
+        const scrollBar = document.getElementById('scroll-progress');
+
+        window.addEventListener('scroll', () => {
+            const scrollTop    = window.scrollY;
+            const docHeight    = document.documentElement.scrollHeight - window.innerHeight;
+            const pct          = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+            scrollBar.style.width = pct + '%';
+            // show glowing tip only when actually scrolling
+            scrollBar.classList.toggle('active', pct > 0 && pct < 100);
+        }, { passive: true });
+
+        /* ── PARTICLES ── */
+        const canvas = document.getElementById('particle-canvas');
+        const ctx = canvas.getContext('2d');
+
+        function resize() {
+            canvas.width  = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        resize();
+        window.addEventListener('resize', resize);
+
+        // Palette colours pulled from the hologram theme
+        const COLORS = [
+            'rgba(176, 126, 240,',   // --h2 lavender
+            'rgba(207, 118, 224,',   // --h8 vivid violet
+            'rgba(218, 158, 226,',   // --h1 soft violet
+            'rgba(247, 195, 219,',   // --h4 blush pink
+            'rgba(188, 104, 219,',   // --h5 medium purple
+            'rgba(247, 238, 250,',   // --h7 near-white
+        ];
+
+        function rand(min, max) { return Math.random() * (max - min) + min; }
+
+        class Orb {
+            constructor() { this.reset(true); }
+
+            reset(initial = false) {
+                this.x     = rand(0, canvas.width);
+                this.y     = initial ? rand(0, canvas.height) : canvas.height + 20;
+                this.r     = rand(1.2, 4.5);
+                this.color = COLORS[Math.floor(Math.random() * COLORS.length)];
+                this.alpha = rand(0.12, 0.55);
+                this.vx    = rand(-0.18, 0.18);
+                this.vy    = rand(-0.35, -0.08);   // always drifts upward
+                this.pulse = rand(0, Math.PI * 2);  // phase offset for shimmer
+                this.pulseSpeed = rand(0.012, 0.03);
+                // soft glow radius is 2–4× the dot radius
+                this.glowR = this.r * rand(2.5, 4.5);
+            }
+
+            update() {
+                this.x    += this.vx;
+                this.y    += this.vy;
+                this.pulse += this.pulseSpeed;
+                // shimmer: alpha breathes ±20% of base value
+                this.currentAlpha = this.alpha * (0.8 + 0.2 * Math.sin(this.pulse));
+
+                if (this.y < -20 || this.x < -20 || this.x > canvas.width + 20) {
+                    this.reset();
+                }
+            }
+
+            draw() {
+                // outer glow
+                const grd = ctx.createRadialGradient(this.x, this.y, 0, this.x, this.y, this.glowR);
+                grd.addColorStop(0,   `${this.color}${this.currentAlpha})`);
+                grd.addColorStop(0.4, `${this.color}${this.currentAlpha * 0.4})`);
+                grd.addColorStop(1,   `${this.color}0)`);
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.glowR, 0, Math.PI * 2);
+                ctx.fillStyle = grd;
+                ctx.fill();
+
+                // solid bright core
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.r, 0, Math.PI * 2);
+                ctx.fillStyle = `${this.color}${Math.min(this.currentAlpha * 2, 1)})`;
+                ctx.fill();
+            }
+        }
+
+        // Spawn 80 orbs spread across the full canvas
+        const orbs = Array.from({ length: 80 }, () => new Orb());
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            orbs.forEach(o => { o.update(); o.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+        animateParticles();
+
     </script>
 </body>
 </html>
